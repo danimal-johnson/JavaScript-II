@@ -91,11 +91,26 @@ contains('yo-yo', items, printIt);   // True
 contains('Crayons', items, printIt); // False
 
 
-/* STRETCH PROBLEM 
+/* STRETCH PROBLEM */
+
+let pets = ["Dog", "Dog", "Cat", "Chicken", "Cat", "Lemur", "Dog", "Tarantula", "Guinea Pig", "Cat", "Porcupine"];
+typesOfPetsA = [];
+
+// ------ Without Callbacks (1 line) --------
+typesOfPetsA = Array.from(new Set(pets));
+console.log(typesOfPetsA);
+
+// ------- With Callbacks --------
+const snazzyPetRemoval = function(arr) {
+  return Array.from(new Set(arr));
+}
 
 function removeDuplicates(array, cb) {
   // removeDuplicates removes all duplicate values from the given array.
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
+  cb (array);
 }
-*/
+
+let typesOfPetsB = removeDuplicates(pets, snazzyPetRemoval);
+console.log(typesOfPetsA);
