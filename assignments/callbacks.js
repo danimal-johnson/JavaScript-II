@@ -38,32 +38,79 @@ const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
   console.log(test2); // "this Pencil is worth a million dollars!"
 */
 
+// *** The callback function. ***
+function printIt(value) {
+  console.log(value);
+}
+
 
 function getLength(arr, cb) {
   // getLength passes the length of the array into the callback.
+  return cb(arr.length);
 }
+
+console.log("Testing length");
+getLength(items, printIt);
+
 
 function last(arr, cb) {
   // last passes the last item of the array into the callback.
+  return cb(arr[arr.length - 1]);
 }
+
+console.log("Testing last item");
+last(items, printIt);
+
 
 function sumNums(x, y, cb) {
   // sumNums adds two numbers (x, y) and passes the result to the callback.
+  return cb(x + y);
 }
+
+console.log("Testing sums");
+sumNums(3, 5, printIt);
+
 
 function multiplyNums(x, y, cb) {
   // multiplyNums multiplies two numbers and passes the result to the callback.
+  return cb(x * y);
 }
+
+console.log("Testing multiply");
+multiplyNums(12, 3, printIt);
+
 
 function contains(item, list, cb) {
   // contains checks if an item is present inside of the given array/list.
   // Pass true to the callback if it is, otherwise pass false.
+  return cb(list.includes(item));
 }
 
+console.log("Testing items in array");
+contains('yo-yo', items, printIt);   // True
+contains('Crayons', items, printIt); // False
+
+
 /* STRETCH PROBLEM */
+
+let pets = ["Dog", "Dog", "Cat", "Chicken", "Cat", "Lemur", "Dog", "Tarantula", "Guinea Pig", "Cat", "Porcupine"];
+typesOfPetsA = [];
+
+// ------ Without Callbacks (1 line) --------
+typesOfPetsA = Array.from(new Set(pets));
+console.log(typesOfPetsA);
+
+// ------- With Callbacks --------
+const snazzyPetRemoval = function(arr) {
+  return Array.from(new Set(arr));
+}
 
 function removeDuplicates(array, cb) {
   // removeDuplicates removes all duplicate values from the given array.
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
+  cb (array);
 }
+
+let typesOfPetsB = removeDuplicates(pets, snazzyPetRemoval);
+console.log(typesOfPetsA);
